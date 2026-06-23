@@ -1,0 +1,348 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  zoom: 1.2;
+}
+
+body {
+  background-color: #1a1a2e;
+  color: #ffffff;
+  font-family: monospace;
+  height: 100vh;
+}
+
+#app {
+  display: flex;
+  height: 100vh;
+}
+
+/* Sidebar */
+#sidebar {
+  width: 180px;
+  background-color: #16213e;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 12px;
+  gap: 8px;
+  transition: width 0.3s ease;
+  overflow-y: auto;
+  height: 100vh;
+}
+
+#sidebar.collapsed {
+  width: 72px;
+}
+
+#sidebar.collapsed .day-btn,
+#sidebar.collapsed nav,
+#sidebar.collapsed #day-tracker {
+  display: none;
+}
+
+#sidebar.collapsed #logo span {
+  display: none;
+}
+
+#sidebar.collapsed #logo {
+  justify-content: center;
+  padding: 0;
+}
+
+#logo {
+  display: flex;
+  align-items: center;
+  gap: 0px;
+  color: #F09E2A;
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+#logo-icon {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+}
+
+.day-btn {
+  width: 100%;
+  padding: 10px 12px;
+  background-color: rgba(255, 255, 255, .02);
+  color: #ffffff;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  text-align: left;
+  cursor: pointer;
+  font-family: monospace;
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.day-btn:hover {
+  background-color: #0f3460;
+}
+
+.day-btn.active {
+  background-color: transparent;
+  border: 1px solid #4a90d9;
+  color: #ffffff;
+}
+
+/* Main content */
+#main {
+  flex: 1;
+  padding: 32px;
+  background-color: #1e2235;
+}
+
+#day-title {
+  font-size: 24px;
+  margin-bottom: 24px;
+}
+
+/* Table */
+#workout-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+}
+
+#workout-table th {
+  text-align: left;
+  padding: 8px 10px;
+  color: #aaaaaa;
+  font-weight: normal;
+}
+
+#workout-table td {
+  padding: 6px 10px;
+}
+
+#workout-table td:first-child {
+  color: #aaaaaa;
+  width: 32px;
+}
+
+#workout-table input {
+  width: 100%;
+  background-color: #2e3250;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 10px;
+  color: #ffffff;
+  font-size: 16px;
+  font-family: monospace;
+}
+
+#workout-table input::placeholder {
+  color: #666680;
+}
+
+#workout-table input:focus {
+  outline: 1px solid #4a90d9;
+}
+
+/* Sets and Reps columns narrower */
+#workout-table td:nth-child(2) {
+  max-width: 450px;
+  width: 450px;
+}
+
+#workout-table td:nth-child(3),
+#workout-table td:nth-child(4),
+#workout-table td:nth-child(5) {
+  width: 100px;
+}
+
+/* Action buttons */
+#actions {
+  margin-top: 28px;
+  display: flex;
+  gap: 12px;
+}
+
+#clear-btn {
+  padding: 8px 20px;
+  background-color: transparent;
+  border: 1px solid #e05252;
+  color: #e05252;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: monospace;
+  font-size: 14px;
+}
+
+#clear-btn:hover {
+  background-color: #e0525222;
+}
+
+/* Modal */
+#modal {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#modal.hidden {
+  display: none;
+}
+
+#modal-box {
+  background-color: #2a2d45;
+  padding: 36px 48px;
+  border-radius: 8px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#modal-box p {
+  font-size: 15px;
+}
+
+#modal-box div {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+#tracker-modal {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#tracker-modal.hidden {
+  display: none;
+}
+
+#confirm-btn, #confirm-tracker-btn {
+  padding: 8px 20px;
+  background-color: transparent;
+  border: 1px solid #e05252;
+  color: #e05252;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: monospace;
+  font-size: 14px;
+}
+
+#cancel-btn, #cancel-tracker-btn {
+  padding: 8px 20px;
+  background-color: transparent;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: monospace;
+  font-size: 14px;
+}
+
+.sidebar-divider {
+  border: none;
+  border-top: 1px solid #2e3a55;
+  margin: 16px 0 0 ;
+}
+
+#day-tracker {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.tracker-month {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.month-label {
+  font-size: 16px;
+  color: #aaaaaa;
+  margin-bottom: 4px;
+  font-style: italic;
+}
+
+.tracker-week {
+  display: flex;
+  gap: 12px;
+  padding: 0 4px;
+}
+
+.tracker-week input[type="checkbox"] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #2e3a55;
+  border-radius: 3px;
+  background-color: #1e2235;
+  cursor: pointer;
+  flex: 1;
+  max-width: 20px;
+}
+
+.tracker-week input[type="checkbox"]:checked {
+  background-color: #216f38;
+  border-color: #27e35f;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='M3 8l3.5 3.5L13 5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 14px;
+}
+
+#clear-tracker-btn {
+  width: 100%;
+  padding: 8px 12px;
+  background-color: transparent;
+  border: 1px solid #e05252;
+  color: #e05252;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: monospace;
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+#clear-tracker-btn:hover {
+  background-color: #e0525222;
+}
+
+#tracker-modal-box {
+  background-color: #2a2d45;
+  padding: 36px 48px;
+  border-radius: 8px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#workout-table tbody tr:hover {
+  background-color: #ffffff08;
+}
+
+.tracker-week-labels {
+  display: flex;
+  gap: 12px;
+  padding: 0 4px;
+}
+
+.tracker-week-labels span {
+  flex: 1;
+  max-width: 28px;
+  text-align: center;
+  font-size: 10px;
+  color: #555870;
+  font-style: italic;
+}

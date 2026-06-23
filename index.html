@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Workout Tracker</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+
+    <div id="app">
+
+      <!-- Sidebar -->
+      <aside id="sidebar">
+        <div id="logo" onclick="toggleSidebar()" style="cursor: pointer;">
+        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" id="logo-icon">
+          <path fill="#F09E2A" d="M540.120972,149.715973 C585.512817,152.215286 629.828552,158.006210 671.912903,174.997543 C696.894836,185.083878 718.258301,199.939713 731.930969,223.985275 C740.739136,239.475906 744.993225,256.359589 746.235107,274.002899 C749.177063,315.798065 737.966675,354.438019 719.583313,391.408234 C716.905090,396.794312 714.611084,402.304840 712.661987,407.988525 C711.466125,411.475891 711.976440,414.174500 714.521912,417.072601 C745.806946,452.690735 762.335327,495.097931 770.979431,541.027222 C772.824219,550.829407 773.952332,560.761536 774.827820,570.720337 C775.165588,574.562744 773.916443,575.920044 770.286133,575.916931 C760.119812,575.908386 749.952637,576.098145 739.787231,576.019226 C713.294922,575.813599 686.798218,576.506348 660.306458,575.517395 C656.466003,575.374023 654.281555,574.229370 652.554443,570.761230 C645.945068,557.489746 639.082458,544.343628 632.238647,531.190125 C631.291565,529.369812 630.792786,527.005127 627.462158,526.321594 C614.515808,551.493530 603.196411,577.683167 588.388611,602.586304 C568.811890,541.331421 553.468872,479.064240 534.915466,417.375366 C517.169495,477.734161 501.788757,538.441650 483.136536,598.487976 C470.577850,564.204590 461.034363,529.201355 450.270294,494.462463 C446.729950,495.729614 446.500977,498.329468 445.648956,500.352264 C435.885620,523.531433 426.110565,546.706787 416.587860,569.985107 C414.942322,574.007629 412.751709,575.371338 408.449707,575.457886 C359.633331,576.440308 310.821106,574.943298 262.007507,575.352356 C255.257385,575.408936 255.209106,575.324585 255.649643,568.574097 C258.905975,518.678894 274.513031,473.126221 303.713104,432.397064 C307.398743,427.256226 311.311584,422.256378 315.421234,417.449463 C317.998016,414.435455 317.999634,411.885986 316.188477,408.448608 C305.225189,387.641052 295.272400,366.389587 288.798431,343.671783 C281.984436,319.760986 278.444214,295.454742 280.838776,270.594269 C284.943054,227.983139 306.753387,197.634033 345.258270,179.240860 C371.681915,166.618713 399.939758,160.289673 428.652679,155.851974 C461.450867,150.782837 494.463165,148.321274 527.674438,149.058945 C531.667053,149.147614 535.654175,149.487396 540.120972,149.715973 M354.163605,287.672333 C353.743134,296.499298 355.923218,304.825623 359.061157,312.960663 C365.493011,329.635162 376.028137,343.814575 386.376129,358.131195 C388.571259,361.168243 390.504364,361.690521 393.841309,360.012543 C403.079742,355.366882 412.798279,351.854095 422.638733,348.709686 C457.766022,337.485168 493.765015,333.560425 530.531189,335.579346 C565.416565,337.495026 599.180786,344.069885 630.947510,359.093964 C634.508362,360.778107 636.963379,360.263275 639.324219,357.629700 C653.943359,341.321533 666.043701,323.471283 671.268677,301.873230 C675.924072,282.629425 670.430664,266.724457 654.109619,254.947067 C648.674316,251.024902 642.857056,247.838852 636.601074,245.438187 C606.897034,234.039719 575.574036,232.072632 544.356079,230.519180 C510.910767,228.854858 477.440460,229.810104 444.168549,234.311615 C422.348450,237.263794 400.763885,241.013718 380.769928,251.023972 C365.820435,258.508636 355.332397,269.089081 354.163605,287.672333 M327.606842,427.090637 C303.594391,453.833954 287.003235,495.848938 285.883972,513.022949 C324.590210,427.561676 387.924316,371.674072 480.980560,351.618774 C464.392212,352.410187 448.291473,355.547394 432.483673,360.327271 C391.530060,372.710480 356.011627,393.653259 327.606842,427.090637 z"/>
+          <path fill="#F09E2A" d="M544.999878,797.362793 C493.338928,797.329956 442.177643,797.182861 391.017303,797.342346 C377.742950,797.383667 366.104095,793.353455 355.755951,785.398315 C322.024292,759.466858 297.197235,726.504822 279.360504,688.079468 C268.704010,665.122314 261.694519,641.044556 257.594757,616.114319 C256.876984,611.749451 254.709717,610.055847 250.477386,609.465576 C224.431290,605.832458 198.411758,602.008423 172.388168,598.215088 C170.461044,597.934143 168.571396,597.396057 166.391159,596.917480 C167.440842,594.348938 169.285812,594.969604 170.748505,594.957214 C208.236298,594.639404 245.735870,593.650452 283.209137,594.262878 C320.868317,594.878296 358.521088,594.713745 396.175934,594.904663 C400.663574,594.927368 403.316132,596.285583 404.850891,600.567810 C406.702972,605.735229 408.976318,610.754822 411.159027,615.798706 C411.927338,617.574158 412.237915,620.170898 414.526154,620.370605 C417.178894,620.602234 417.778992,617.798157 418.719543,616.008789 C425.618652,602.884277 432.349731,589.671448 439.227539,576.535645 C440.729492,573.667114 442.006256,570.565857 445.779480,567.476868 C459.552979,613.609741 470.813293,659.609009 484.528809,705.184631 C500.693115,647.090759 514.587830,588.647949 531.152405,530.599915 C534.163086,531.762695 534.290955,534.175415 534.968872,536.029968 C548.459167,572.932556 561.876892,609.861633 575.324585,646.779785 C576.862854,651.002686 578.492859,655.192261 580.078857,659.397766 C580.663208,660.947388 581.052795,662.868103 583.068726,662.968384 C585.192688,663.074158 585.521545,660.946045 586.211487,659.550415 C598.832947,634.017944 611.377014,608.447327 624.017822,582.924438 C625.536804,579.857727 626.532227,576.401489 630.089539,573.417664 C633.960632,578.549194 638.174561,583.256836 641.342468,588.586304 C644.392395,593.717468 648.169922,595.181824 653.981140,595.106079 C684.973267,594.701904 715.971130,594.753784 746.966736,594.595093 C777.442200,594.439026 807.917175,594.171570 838.392761,594.067749 C844.716125,594.046204 851.041870,594.513123 857.364746,594.794800 C858.471130,594.844055 859.742126,594.625122 860.614014,596.205139 C859.559326,597.940857 857.556946,597.729858 855.954590,597.975708 C830.786804,601.838318 805.621948,605.726807 780.418152,609.342407 C775.597717,610.033936 773.940552,612.168579 773.208374,616.886719 C764.162292,675.182007 740.396606,726.279968 698.378235,768.299805 C691.773254,774.905151 684.505005,780.765686 677.046082,786.388977 C667.252197,793.772461 656.240662,797.337158 643.989136,797.329163 C611.159424,797.307678 578.329651,797.347412 544.999878,797.362793 M713.275452,678.690552 C690.557678,717.821167 659.610962,748.225525 618.017822,768.053955 C647.954407,763.502502 682.759155,741.669067 704.171631,710.073975 C715.474182,693.396423 727.708618,663.177063 725.442871,655.888489 C721.435608,663.420166 717.541260,670.739563 713.275452,678.690552 z"/>
+        </svg>
+        <span>Workout Tracker</span>
+      </div>
+        <nav>
+          <button class="day-btn active" data-day="monday">Monday</button>
+          <button class="day-btn" data-day="tuesday">Tuesday</button>
+          <button class="day-btn" data-day="wednesday">Wednesday</button>
+          <button class="day-btn" data-day="thursday">Thursday</button>
+          <button class="day-btn" data-day="friday">Friday</button>
+        </nav>
+        <div id="day-tracker">
+          <hr class="sidebar-divider" />
+
+          <div class="tracker-month">
+            <span class="month-label">Month 1</span>
+            <div class="tracker-week-labels">
+              <span>M</span>
+              <span>T</span>
+              <span>W</span>
+              <span>T</span>
+              <span>F</span>
+            </div>
+            <div class="tracker-week"><input type="checkbox"><input type="checkbox"><input type="checkbox"><input type="checkbox"><input type="checkbox"></div>
+            <div class="tracker-week"><input type="checkbox"><input type="checkbox"><input type="checkbox"><input type="checkbox"><input type="checkbox"></div>
+            <div class="tracker-week"><input type="checkbox"><input type="checkbox"><input type="checkbox"><input type="checkbox"><input type="checkbox"></div>
+            <div class="tracker-week"><input type="checkbox"><input type="checkbox"><input type="checkbox"><input type="checkbox"><input type="checkbox"></div>
+          </div>
+
+          <div class="tracker-month">
+            <span class="month-label">Month 2</span>
+            <div class="tracker-week-labels">
+              <span>M</span>
+              <span>T</span>
+              <span>W</span>
+              <span>T</span>
+              <span>F</span>
+            </div>
+            <div class="tracker-week"><input type="checkbox"><input type="checkbox"><input type="checkbox"><input type="checkbox"><input type="checkbox"></div>
+            <div class="tracker-week"><input type="checkbox"><input type="checkbox"><input type="checkbox"><input type="checkbox"><input type="checkbox"></div>
+            <div class="tracker-week"><input type="checkbox"><input type="checkbox"><input type="checkbox"><input type="checkbox"><input type="checkbox"></div>
+            <div class="tracker-week"><input type="checkbox"><input type="checkbox"><input type="checkbox"><input type="checkbox"><input type="checkbox"></div>
+          </div>
+
+          <div class="tracker-month">
+            <span class="month-label">Month 3</span>
+            <div class="tracker-week-labels">
+              <span>M</span>
+              <span>T</span>
+              <span>W</span>
+              <span>T</span>
+              <span>F</span>
+            </div>
+            <div class="tracker-week"><input type="checkbox"><input type="checkbox"><input type="checkbox"><input type="checkbox"><input type="checkbox"></div>
+            <div class="tracker-week"><input type="checkbox"><input type="checkbox"><input type="checkbox"><input type="checkbox"><input type="checkbox"></div>
+            <div class="tracker-week"><input type="checkbox"><input type="checkbox"><input type="checkbox"><input type="checkbox"><input type="checkbox"></div>
+            <div class="tracker-week"><input type="checkbox"><input type="checkbox"><input type="checkbox"><input type="checkbox"><input type="checkbox"></div>
+          </div>
+
+          <button id="clear-tracker-btn">Clear Day Tracker</button>
+        </div>
+      </aside>
+
+      <!-- Main content -->
+      <main id="main">
+        <h2 id="day-title">Monday</h2>
+
+        <table id="workout-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Exercise</th>
+              <th>Sets</th>
+              <th>Reps</th>
+              <th>Weight</th> 
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- 6 rows -->
+            <tr>
+              <td>1</td>
+              <td><input type="text" placeholder="Exercise" /></td>
+              <td><input type="number" placeholder="Sets" /></td>
+              <td><input type="number" placeholder="Reps" /></td>
+              <td><input type="text" placeholder="Lbs." /></td>
+              <td><input type="text" placeholder="Notes" /></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td><input type="text" placeholder="Exercise" /></td>
+              <td><input type="number" placeholder="Sets" /></td>
+              <td><input type="number" placeholder="Reps" /></td>
+              <td><input type="text" placeholder="Lbs." /></td>
+              <td><input type="text" placeholder="Notes" /></td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td><input type="text" placeholder="Exercise" /></td>
+              <td><input type="number" placeholder="Sets" /></td>
+              <td><input type="number" placeholder="Reps" /></td>
+              <td><input type="text" placeholder="Lbs." /></td>
+              <td><input type="text" placeholder="Notes" /></td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td><input type="text" placeholder="Exercise" /></td>
+              <td><input type="number" placeholder="Sets" /></td>
+              <td><input type="number" placeholder="Reps" /></td>
+              <td><input type="text" placeholder="Lbs." /></td>
+              <td><input type="text" placeholder="Notes" /></td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td><input type="text" placeholder="Exercise" /></td>
+              <td><input type="number" placeholder="Sets" /></td>
+              <td><input type="number" placeholder="Reps" /></td>
+              <td><input type="text" placeholder="Lbs." /></td>
+              <td><input type="text" placeholder="Notes" /></td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td><input type="text" placeholder="Exercise" /></td>
+              <td><input type="number" placeholder="Sets" /></td>
+              <td><input type="number" placeholder="Reps" /></td>
+              <td><input type="text" placeholder="Lbs." /></td>
+              <td><input type="text" placeholder="Notes" /></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Action buttons -->
+        <div id="actions">
+          <button id="clear-btn">Clear Table 🧹</button>
+        </div>
+      </main>
+
+    </div>
+
+    <!-- Clear confirmation modal -->
+    <div id="modal" class="hidden">
+      <div id="modal-box">
+        <p>Are you sure you want to clear this table?</p>
+        <div>
+          <button id="confirm-btn">Confirm</button>
+          <button id="cancel-btn">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="tracker-modal" class="hidden">
+      <div id="tracker-modal-box">
+        <p>Are you sure you want to clear the day tracker?</p>
+        <div>
+          <button id="confirm-tracker-btn">Confirm</button>
+          <button id="cancel-tracker-btn">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
