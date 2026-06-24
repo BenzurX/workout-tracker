@@ -9,13 +9,28 @@ const cancelBtn = document.getElementById('cancel-btn');
 
 let activeDay = 'monday';
 
-const dayTitles = {
-  monday: 'Monday - Push',
-  tuesday: 'Tuesday - Pull',
-  wednesday: 'Wednesday - Rest',
-  thursday: 'Thursday - Legs',
-  friday: 'Friday - Core'
+const dayPrefixes = {
+  monday: 'Monday',
+  tuesday: 'Tuesday',
+  wednesday: 'Wednesday',
+  thursday: 'Thursday',
+  friday: 'Friday'
 };
+
+const dayDefaults = {
+  monday: 'Push',
+  tuesday: 'Pull',
+  wednesday: 'Legs',
+  thursday: 'Push',
+  friday: 'Pull'
+};
+
+function updateTitle(day) {
+  const saved = localStorage.getItem(day + 'Subtitle');
+  const subtitle = saved || dayDefaults[day];
+  document.getElementById('day-prefix').textContent = dayPrefixes[day] + ' - ';
+  document.getElementById('day-subtitle').textContent = subtitle;
+}
 
 function toggleSidebar() {
   document.getElementById('sidebar').classList.toggle('collapsed');
@@ -48,7 +63,7 @@ dayButtons.forEach(btn => {
     dayButtons.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     activeDay = btn.dataset.day;
-    dayTitle.textContent = dayTitles[activeDay];
+    updateTitle(activeDay);
     loadDay(activeDay);
     localStorage.setItem('activeDay', activeDay);
   });
@@ -80,7 +95,7 @@ cancelBtn.addEventListener('click', () => {
 // Load default day on startup
 const savedActiveDay = localStorage.getItem('activeDay') || 'monday';
 activeDay = savedActiveDay;
-dayTitle.textContent = dayTitles[activeDay];
+updateTitle(activeDay);
 document.querySelector(`[data-day="${activeDay}"]`).classList.add('active');
 document.querySelector('[data-day="monday"]').classList.remove('active');
 loadDay(activeDay);
@@ -135,3 +150,39 @@ document.getElementById('modal').addEventListener('click', function(e) {
 document.getElementById('tracker-modal').addEventListener('click', function(e) {
   if (e.target === this) trackerModal.classList.add('hidden');
 });
+
+function attachSubtitleListener() {
+  const subtitle = document.getElementById('day-subtitle');
+  if (!subtitle) return;
+
+  subtitle.addEventListener('click', function() {
+    const current = this.textContent;
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.value = current;
+    input.id = 'subtitle-input';
+    this.replaceWith(input);
+    input.focus();
+
+    function saveSubtitle() {
+      const newValue = input.value.trim() || dayDefaults[activeDay];
+      localStorage.setItem(activeDay + 'Subtitle', newValue);
+      const span = document.createElement('span');
+      span.id = 'day-subtitle';
+      span.title = 'Click to edit';
+      span.textContent = newValue;
+      input.replaceWith(span);
+      attachSubtitleListener();
+    }
+
+    input.addEventListener('blur', saveSubtitle);
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        input.removeEventListener('blur', saveSubtitle);
+        saveSubtitle();
+      }
+    });
+  });
+}
+
+attachSubtitleListener();

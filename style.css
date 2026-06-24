@@ -346,3 +346,33 @@ body {
   color: #555870;
   font-style: italic;
 }
+
+/* Title Edit */
+#day-subtitle {
+  cursor: pointer;
+  border-bottom: 1px dashed #555870;
+}
+
+#day-subtitle {
+  cursor: pointer;
+  border-bottom: 1px dashed #555870;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#day-prefix {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#subtitle-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #F09E2A;
+  color: #ffffff;
+  font-size: 24px;
+  font-family: monospace;
+  font-weight: bold;
+  width: 200px;
+  outline: none;
+}
