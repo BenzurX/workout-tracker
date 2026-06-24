@@ -1,6 +1,3 @@
-/* ============================================================
-   Reset
-   ============================================================ */
 * {
   margin: 0;
   padding: 0;
@@ -18,17 +15,12 @@ body {
   height: 100vh;
 }
 
-/* ============================================================
-   Layout
-   ============================================================ */
 #app {
   display: flex;
   height: 100vh;
 }
 
-/* ============================================================
-   Sidebar
-   ============================================================ */
+/* Sidebar */
 #sidebar {
   width: 180px;
   background-color: #16213e;
@@ -45,6 +37,7 @@ body {
   width: 72px;
 }
 
+#sidebar.collapsed .day-btn,
 #sidebar.collapsed nav,
 #sidebar.collapsed #day-tracker {
   display: none;
@@ -59,9 +52,6 @@ body {
   padding: 0;
 }
 
-/* ============================================================
-   Logo
-   ============================================================ */
 #logo {
   display: flex;
   align-items: center;
@@ -78,9 +68,6 @@ body {
   flex-shrink: 0;
 }
 
-/* ============================================================
-   Day Buttons
-   ============================================================ */
 .day-btn {
   width: 100%;
   padding: 10px 12px;
@@ -105,54 +92,19 @@ body {
   color: #ffffff;
 }
 
-/* ============================================================
-   Main Content
-   ============================================================ */
+/* Main content */
 #main {
   flex: 1;
   padding: 32px;
   background-color: #1e2235;
 }
 
-/* ============================================================
-   Day Title
-   ============================================================ */
 #day-title {
   font-size: 24px;
   margin-bottom: 24px;
 }
 
-#day-prefix {
-  font-size: 24px;
-  font-weight: bold;
-}
-
-#day-subtitle {
-  cursor: pointer;
-  border-bottom: 1px dashed #555870;
-  font-size: 24px;
-  font-weight: bold;
-}
-
-#day-subtitle:hover {
-  border-bottom-color: #F09E2A;
-}
-
-#subtitle-input {
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid #F09E2A;
-  color: #ffffff;
-  font-size: 24px;
-  font-family: monospace;
-  font-weight: bold;
-  width: 200px;
-  outline: none;
-}
-
-/* ============================================================
-   Workout Table
-   ============================================================ */
+/* Table */
 #workout-table {
   width: 100%;
   border-collapse: collapse;
@@ -176,16 +128,6 @@ body {
   width: 32px;
 }
 
-#workout-table td:nth-child(2) {
-  width: 450px;
-}
-
-#workout-table td:nth-child(3),
-#workout-table td:nth-child(4),
-#workout-table td:nth-child(5) {
-  width: 100px;
-}
-
 #workout-table input {
   width: 100%;
   background-color: #2e3250;
@@ -205,13 +147,19 @@ body {
   outline: 1px solid #4a90d9;
 }
 
-#workout-table tbody tr:hover {
-  background-color: #ffffff08;
+/* Sets and Reps columns narrower */
+#workout-table td:nth-child(2) {
+  max-width: 450px;
+  width: 450px;
 }
 
-/* ============================================================
-   Action Buttons
-   ============================================================ */
+#workout-table td:nth-child(3),
+#workout-table td:nth-child(4),
+#workout-table td:nth-child(5) {
+  width: 100px;
+}
+
+/* Action buttons */
 #actions {
   margin-top: 28px;
   display: flex;
@@ -233,11 +181,8 @@ body {
   background-color: #e0525222;
 }
 
-/* ============================================================
-   Modals
-   ============================================================ */
-#modal,
-#tracker-modal {
+/* Modal */
+#modal {
   position: fixed;
   inset: 0;
   background-color: rgba(0, 0, 0, 0.6);
@@ -246,13 +191,11 @@ body {
   justify-content: center;
 }
 
-#modal.hidden,
-#tracker-modal.hidden {
+#modal.hidden {
   display: none;
 }
 
-#modal-box,
-#tracker-modal-box {
+#modal-box {
   background-color: #2a2d45;
   padding: 36px 48px;
   border-radius: 8px;
@@ -262,20 +205,30 @@ body {
   gap: 20px;
 }
 
-#modal-box p,
-#tracker-modal-box p {
+#modal-box p {
   font-size: 15px;
 }
 
-#modal-box div,
-#tracker-modal-box div {
+#modal-box div {
   display: flex;
   justify-content: center;
   gap: 16px;
 }
 
-#confirm-btn,
-#confirm-tracker-btn {
+#tracker-modal {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#tracker-modal.hidden {
+  display: none;
+}
+
+#confirm-btn, #confirm-tracker-btn {
   padding: 8px 20px;
   background-color: transparent;
   border: 1px solid #e05252;
@@ -286,8 +239,7 @@ body {
   font-size: 14px;
 }
 
-#cancel-btn,
-#cancel-tracker-btn {
+#cancel-btn, #cancel-tracker-btn {
   padding: 8px 20px;
   background-color: transparent;
   border: 1px solid #ffffff;
@@ -298,18 +250,12 @@ body {
   font-size: 14px;
 }
 
-/* ============================================================
-   Sidebar Divider
-   ============================================================ */
 .sidebar-divider {
   border: none;
   border-top: 1px solid #2e3a55;
-  margin: 16px 0 0;
+  margin: 16px 0 0 ;
 }
 
-/* ============================================================
-   Day Tracker
-   ============================================================ */
 #day-tracker {
   display: flex;
   flex-direction: column;
@@ -326,21 +272,6 @@ body {
   font-size: 16px;
   color: #aaaaaa;
   margin-bottom: 4px;
-  font-style: italic;
-}
-
-.tracker-week-labels {
-  display: flex;
-  gap: 12px;
-  padding: 0 4px;
-}
-
-.tracker-week-labels span {
-  flex: 1;
-  max-width: 28px;
-  text-align: center;
-  font-size: 10px;
-  color: #555870;
   font-style: italic;
 }
 
@@ -386,4 +317,63 @@ body {
 
 #clear-tracker-btn:hover {
   background-color: #e0525222;
+}
+
+#tracker-modal-box {
+  background-color: #2a2d45;
+  padding: 36px 48px;
+  border-radius: 8px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#workout-table tbody tr:hover {
+  background-color: #ffffff08;
+}
+
+.tracker-week-labels {
+  display: flex;
+  gap: 12px;
+  padding: 0 4px;
+}
+
+.tracker-week-labels span {
+  flex: 1;
+  max-width: 28px;
+  text-align: center;
+  font-size: 10px;
+  color: #555870;
+  font-style: italic;
+}
+
+/* Title Edit */
+#day-subtitle {
+  cursor: pointer;
+  border-bottom: 1px dashed #555870;
+}
+
+#day-subtitle {
+  cursor: pointer;
+  border-bottom: 1px dashed #555870;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#day-prefix {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#subtitle-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #F09E2A;
+  color: #ffffff;
+  font-size: 24px;
+  font-family: monospace;
+  font-weight: bold;
+  width: 200px;
+  outline: none;
 }
