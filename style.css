@@ -109,6 +109,7 @@ body {
   width: 100%;
   border-collapse: collapse;
   font-size: 16px;
+  margin-top: 20px;
 }
 
 #workout-table th {
